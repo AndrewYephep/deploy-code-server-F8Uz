@@ -9,11 +9,11 @@ ENV SHELL=/bin/bash
 RUN sudo apt-get update && sudo apt-get install unzip -y
 RUN curl https://rclone.org/install.sh | sudo bash
 
-# Install Node.js and npm
-RUN sudo apt-get update && sudo apt-get install -y nodejs npm
-# Optionally, if you want a newer version of Node.js, you could use:
-# RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-# RUN sudo apt-get install -y nodejs
+# Install latest Node.js and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+RUN sudo apt-get install -y nodejs
+# Verify we installed the latest versions
+RUN node -v && npm -v
 
 # Copy rclone tasks to /tmp, to potentially be used
 COPY deploy-container/rclone-tasks.json /tmp/rclone-tasks.json
